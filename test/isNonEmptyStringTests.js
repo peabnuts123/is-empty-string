@@ -1,72 +1,72 @@
 require('blanket');
 
 var assert = require('assert');
-var isEmptyString = require('../index.js')({ direct: true, prototype: true });
+var isNonEmptyString = require('../index.js')({ direct: true, prototype: true });
 
-describe('isEmptyString', function() {
+describe('isNonEmptyString', function() {
     describe('direct mode', function() {
         it('should be referenced correctly', function() {
-            assert.notEqual(typeof isEmptyString, 'undefined');
+            assert.notEqual(typeof isNonEmptyString, 'undefined');
         }) 
         
         it('returns false for empty string', function() {
-            assert.equal(isEmptyString(''), false);
+            assert.equal(isNonEmptyString(''), false);
         });
         
         it('returns false for spaces', function() {
-            assert.equal(isEmptyString('      '), false); 
+            assert.equal(isNonEmptyString('      '), false); 
         });
         
         it('returns false for tabs', function() {
-            assert.equal(isEmptyString('\t\t\t\t\t\t\t'), false);
+            assert.equal(isNonEmptyString('\t\t\t\t\t\t\t'), false);
         });
         
         it('returns false for newline characters', function() {
-            assert.equal(isEmptyString('\r\n\r\n'), false); 
+            assert.equal(isNonEmptyString('\r\n\r\n'), false); 
         });
         
         it ('returns false for non-breaking space', function() {
-            assert.equal(isEmptyString('\xa0\xa0\xa0\xa0'), false);
+            assert.equal(isNonEmptyString('\xa0\xa0\xa0\xa0'), false);
         })
         
         it('returns false for a mixed bag', function() {
-            assert.equal(isEmptyString('        \t\t\t\n\n\n \n\r\r \r\r \r\t \t\t\t    '), false); 
+            assert.equal(isNonEmptyString('        \t\t\t\n\n\n \n\r\r \r\r \r\t \t\t\t    '), false); 
         });
         
         it('returns false for null', function() {
-            assert.equal(isEmptyString(null), false);
+            assert.equal(isNonEmptyString(null), false);
         });
         
         it('returns false for undefined', function() {
-            assert.equal(isEmptyString(undefined), false);
+            assert.equal(isNonEmptyString(undefined), false);
         });
         
         it('returns false for a NaN', function() {
-            assert.equal(isEmptyString(NaN), false);
+            assert.equal(isNonEmptyString(NaN), false);
         });
         
         it('returns false for a Number', function() {
-            assert.equal(isEmptyString(0), false); 
+            assert.equal(isNonEmptyString(0), false); 
         });
         
         it('returns false for an empty array', function() {
-            assert.equal(isEmptyString([]), false);
+            assert.equal(isNonEmptyString([]), false);
         });
         
         it('returns false for an empty object', function() {
-            assert.equal(isEmptyString({}), false); 
+            assert.equal(isNonEmptyString({}), false); 
         });
         
         it('returns false for a boolean', function() {
-            assert.equal(isEmptyString(true), false); 
+            assert.equal(isNonEmptyString(true), false); 
         });
         
         it('returns true for a non-whitespace string', function() {
-            assert.equal(isEmptyString("_"), true); 
+            assert.equal(isNonEmptyString("_"), true); 
         });
         
         it('returns true for a sparse but non-empty string', function() {
-            assert.equal(isEmptyString('                \t\t\t\t\t\r\r\r\r\r\r\n\n\n\xa0\xa0.\t\t\t\t            '), true); 
+            assert.equal(isNonEmptyString('                \t\t\t\t\t\r\r\r\r\r\r\n\n\n\xa0\xa0.\t\t\t\t            '), true); 
         });
     });
     
